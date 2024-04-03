@@ -1,0 +1,95 @@
+package org.example.ejercicio2;
+
+import org.example.ejercicio3.PersistirDatos;
+import persistencia.DatosEnBase;
+import persistencia.DatosEnDisco;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+public class Pedido {
+    private ArrayList<Plato> listadoPlatos;
+    private ArrayList<Bebida> listadoBebidas;
+    private boolean confirmado;
+    private double precioP;
+    private double precioB;
+    private int id;
+    private  int total;
+    private PersistirDatos interfaz;
+
+    public Pedido() {
+    }
+
+    public Pedido(int id, PersistirDatos interfaz) {
+        this.listadoPlatos = new ArrayList<Plato>();
+        this.listadoBebidas = new ArrayList<Bebida>();
+        this.id = id;
+        this.precioP = 0L;
+        this.precioB = 0L;
+        this.total=0;
+        this.interfaz=interfaz;
+    }
+
+    public void asignarPlato(Plato plato) {
+        this.listadoPlatos.add(plato);
+    }
+
+    public void asignarBebida(Bebida bebida) {
+        this.listadoBebidas.add(bebida);
+    }
+
+    //Cada vez que se confirma el pedido se clacula el costo total y se persiste en disco
+    public void confirmarPedido() {
+        this.confirmado = true;
+        for (Plato item : listadoPlatos) {
+            this.precioP += item.precio();
+            this.total+= (int) item.precio();
+        }
+        for (Bebida item : listadoBebidas) {
+            this.precioB += item.precio();
+            this.total+= (int) item.precio();
+        }
+
+        this.interfaz.guardar(this);
+    }
+
+    public double aplicarDescuentoBebidas(double descuento) {
+        this.precioB = this.precioB - this.precioB * descuento;
+        return precioB;
+    }
+
+    public double aplicarDescuentoPlatos(double descuento) {
+        this.precioP = this.precioP - this.precioP * descuento;
+        return precioP;
+    }
+
+    public double aplicarDescuentoSobreTotal(double descuento) {
+        double total = (this.precioP + this.precioB) - (this.precioP + this.precioB) * descuento;
+        return total;
+    }
+
+    public double cuantoSalenLasBebidas() {
+        double copiaValor = this.precioB;
+        return copiaValor;
+    }
+
+    public double cuantoSalenLosPlatos() {
+        double copiaValor = this.precioP;
+        return copiaValor;
+    }
+
+    public  int cuantoSaleTodo(){
+        return  this.total;
+    }
+
+    public  int getId(){
+        return this.id;
+    }
+    public  ArrayList<Plato> getListadoPlatos(){
+        return this.listadoPlatos;
+    }
+    public  ArrayList<Bebida> getListadoBebidas(){
+        return this.listadoBebidas;
+    }
+
+}
