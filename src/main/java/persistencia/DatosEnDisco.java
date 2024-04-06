@@ -16,11 +16,10 @@ public class DatosEnDisco implements PersistirDatos {
 
 
     @Override
-    public void guardarPedido(Pedido unPedido) {
-        String data= LocalDate.now().toString()+ "||"+ unPedido.cuantoSaleTodo();
+    public void guardarRegistro(String registro) {
         try {
 
-            Files.write(Paths.get("C:\\Users\\victo\\OneDrive\\Documents\\UNIVERSIDAD\\2024\\OBJETOS2\\archivo-ejercicio2.txt"), data.getBytes(),
+            Files.write(Paths.get("C:\\Users\\victo\\OneDrive\\Documents\\UNIVERSIDAD\\2024\\OBJETOS2\\archivo-ejercicio2.txt"), registro.getBytes(),
 
                     StandardOpenOption.APPEND);
 
@@ -29,8 +28,7 @@ public class DatosEnDisco implements PersistirDatos {
             throw new RuntimeException("No se pudo persistir...", e);
 
         }
-
-
     }
 
-    }
+
+}

@@ -1,10 +1,12 @@
 package org.example.ejercicio2;
 
 import org.example.ejercicio3.PersistirDatos;
+import org.example.ejercicio4.Comunicacion;
 import persistencia.DatosEnBase;
 import persistencia.DatosEnDisco;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Pedido {
@@ -14,8 +16,9 @@ public class Pedido {
     private double precioP;
     private double precioB;
     private int id;
-    private  int total;
+    private int total;
     private PersistirDatos interfaz;
+
 
     public Pedido() {
     }
@@ -26,8 +29,8 @@ public class Pedido {
         this.id = id;
         this.precioP = 0L;
         this.precioB = 0L;
-        this.total=0;
-        this.interfaz=interfaz;
+        this.total = 0;
+        this.interfaz = interfaz;
     }
 
     public void asignarPlato(Plato plato) {
@@ -43,14 +46,15 @@ public class Pedido {
         this.confirmado = true;
         for (Plato item : listadoPlatos) {
             this.precioP += item.precio();
-            this.total+= (int) item.precio();
+            this.total += (int) item.precio();
         }
         for (Bebida item : listadoBebidas) {
             this.precioB += item.precio();
-            this.total+= (int) item.precio();
+            this.total += (int) item.precio();
         }
+        String data = LocalDateTime.now().toString() + "||" + this.total + "\n";
+        this.interfaz.guardarRegistro(data);
 
-        this.interfaz.guardar(this);
     }
 
     public double aplicarDescuentoBebidas(double descuento) {
@@ -76,20 +80,6 @@ public class Pedido {
     public double cuantoSalenLosPlatos() {
         double copiaValor = this.precioP;
         return copiaValor;
-    }
 
-    public  int cuantoSaleTodo(){
-        return  this.total;
     }
-
-    public  int getId(){
-        return this.id;
-    }
-    public  ArrayList<Plato> getListadoPlatos(){
-        return this.listadoPlatos;
-    }
-    public  ArrayList<Bebida> getListadoBebidas(){
-        return this.listadoBebidas;
-    }
-
 }

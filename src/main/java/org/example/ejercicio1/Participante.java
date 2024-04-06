@@ -22,9 +22,8 @@ public class Participante {
                 .append("Puntaje: ").append(this.puntaje);
         return copiaDatos.toString();
     }
-    public  String getId(){
-        String datos=this.ID+"_"+this.nombre;
-        return  datos;
+    public  int getId(){
+        return  this.ID;
     }
 
 }

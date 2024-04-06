@@ -1,10 +1,14 @@
 package org.example.ejercicio2;
 
 import org.junit.jupiter.api.Test;
+import persistencia.DatosEnBase;
+import persistencia.DatosEnDisco;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestEjercicio2 {
+
+
 
     @Test
     public void testReservaMesa() {
@@ -31,7 +35,7 @@ public class TestEjercicio2 {
         Mesa mesa1 = new Mesa(1, 10);
 
 
-        Pedido pedido1 = new Pedido(1);
+        Pedido pedido1 = new Pedido(1,new DatosEnDisco());
         pedido1.asignarPlato(plato);
         pedido1.asignarPlato(plato2);
         pedido1.asignarBebida(bebida3);
@@ -57,7 +61,7 @@ public class TestEjercicio2 {
         Bebida bebida1 = new Bebida("Agua saborizada", 1000,5);
         Bebida bebida2 = new Bebida("Gaseosa", 1500,6);
 
-        Pedido pedido1 = new Pedido(1);
+        Pedido pedido1 = new Pedido(1,new DatosEnDisco());
         pedido1.asignarPlato(plato3);
         pedido1.asignarBebida(bebida1);
         pedido1.asignarBebida(bebida2);
@@ -81,7 +85,7 @@ public class TestEjercicio2 {
         Bebida bebida1 = new Bebida("Agua saborizada", 1000,8);
         Bebida bebida2 = new Bebida("Gaseosa", 1500,9);
 
-        Pedido pedido1 = new Pedido(1);
+        Pedido pedido1 = new Pedido(1,new DatosEnDisco());
         pedido1.asignarPlato(plato3);
         pedido1.asignarBebida(bebida1);
         pedido1.asignarBebida(bebida2);
@@ -103,7 +107,7 @@ public class TestEjercicio2 {
         Bebida bebida1 = new Bebida("Agua saborizada", 1000,11);
         Bebida bebida2 = new Bebida("Gaseosa", 1500,12);
 
-        Pedido pedido1 = new Pedido(1);
+        Pedido pedido1 = new Pedido(1,new DatosEnDisco());
         pedido1.asignarPlato(plato3);
         pedido1.asignarBebida(bebida1);
         pedido1.asignarBebida(bebida2);
@@ -123,7 +127,7 @@ public class TestEjercicio2 {
         Plato plato1 = new Plato("Asado", 5500,13);
         Plato plato2 = new Plato("Asado", 5500,14);
 
-        Pedido pedido1 = new Pedido(1);
+        Pedido pedido1 = new Pedido(1,new DatosEnDisco());
         pedido1.asignarPlato(plato1);
         pedido1.asignarPlato(plato2);
         pedido1.confirmarPedido();
